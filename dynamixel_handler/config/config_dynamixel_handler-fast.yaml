@@ -3,7 +3,7 @@
 /**:
     ros__parameters:
     # 通信機器の設定
-        device_name: /dev/ttyUSB0 # 通信するデバイス名
+        device_name: /dev/ttyUSB_dxl # 通信するデバイス名
         baudrate: 4000000 # 通信速度
         latency_timer: 1 # 通信のインターバル
     # サーボの設定

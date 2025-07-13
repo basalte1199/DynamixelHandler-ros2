@@ -226,6 +226,11 @@ void DynamixelHandler::MainLoop(){
     //* Dynamixelから状態Read & topicをPublish
     auto msg = DxlStates().set__stamp(this->get_clock()->now());
     array<double, _num_state> success_rate{}; // 0初期化する．
+    for (auto id : id_set_) {
+    if (ping_err_[id] > 0) {
+        ROS_WARN(" [ping_err] ID %d: ping_err = %d", id, ping_err_[id]);
+    }
+}
     set<uint8_t> target_id_set; for (auto id : id_set_) if ( ping_err_[id]==0 ) target_id_set.insert(id);
     if ( pub_ratio_["status"] && cnt % pub_ratio_["status"] == 0 ) {
         CheckDynamixels(); // Statusに該当するもろもろをチェック
